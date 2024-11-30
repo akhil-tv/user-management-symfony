@@ -1,0 +1,62 @@
+{% extends 'login_base.html.twig' %}
+{% block title %}Contacts{% endblock %}
+{% block body %}<body id="page-top">{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">{{ app.request.attributes.get('_route') == 'app_contacts_new' ? 'Create Contact' : 'Edit Contact' }}</h1></h1>
+                            </div>
+                            {{ form_start(form) }}
+
+                            <div class="form-group">
+                                    {{ form_widget(form.name) }}
+                                    <span class="error-msg">{{ form_errors(form.name) }}</span>
+
+                                </div>
+                                <div class="form-group">
+                                    {{ form_widget(form.email) }}
+                                    <span class="error-msg">{{ form_errors(form.email) }}</span>
+
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        {{ form_widget(form.phone) }}
+                                        <span class="error-msg">{{ form_errors(form.phone) }}</span>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ form_widget(form.city) }}
+                                        <span class="error-msg">{{ form_errors(form.city) }}</span>
+
+                                    </div>
+                                </div>
+                            {{ form_widget(form.submit) }}
+                            {{ form_end(form) }}
+                            <hr>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
